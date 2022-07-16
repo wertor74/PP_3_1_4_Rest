@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-<p><h1>Добро пожаловать [[${#httpServletRequest.remoteUser}]]!</h1></p>
+<p><h1>Пользователь</h1></p>
 <p></p>
 <table style="text-align: center" th:border="1">
     <tr>
@@ -35,6 +35,14 @@
         <td th:utext="${user.getRole()}">Роль</td>
     </tr>
 </table>
+<p/>
+<form th:action="@{/admin/{id}/edit(id=${user.getId()})}" method="get">
+    <input type="submit" value="Редактировать"/>
+</form>
+<p/>
+<form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+    <input type="submit" value="Удалить"/>
+</form>
 <p/>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>

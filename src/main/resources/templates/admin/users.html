@@ -5,14 +5,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Пользователь</title>
+    <title>Таблица пользователей</title>
+    <p/>
+    <h1 th:inline="text">Добро пожаловать [[${#httpServletRequest.remoteUser}]]!</h1>
+    <p/>
     <style>
         table th, table td {padding: 5px}
     </style>
 </head>
 <body>
-<p><h1>Добро пожаловать [[${#httpServletRequest.remoteUser}]]!</h1></p>
-<p></p>
+<p><h1>Таблица пользователей</h1></p>
+<p/>
 <table style="text-align: center" th:border="1">
     <tr>
         <th>Id</th>
@@ -23,6 +26,7 @@
         <th>Имя пользователя</th>
         <th>Пароль</th>
         <th>Роль</th>
+        <th>Действие</th>
     </tr>
     <tr th:each="user : ${user}">
         <td th:utext="${user.getId()}">ID</td>
@@ -30,11 +34,20 @@
         <td th:utext="${user.getFatherName()}">Отчество</td>
         <td th:utext="${user.getLastName()}">Фамилия</td>
         <td th:utext="${user.getAge()}">Возраст</td>
-        <td th:utext="${user.getUsername()}">Имя пользователя</td>
+        <td th:utext="${user.getUsername}">Имя пользователя</td>
         <td th:utext="${user.getPassword()}">Пароль</td>
         <td th:utext="${user.getRole()}">Роль</td>
+        <td>
+            <form th:action="@{/admin/{id}(id=${user.getId()})}" method="get">
+                <input type="submit" value="Редактировать"/>
+            </form>
+        </td>
     </tr>
 </table>
+<p/>
+<form th:action="@{/admin/add}" method="get">
+    <input type="submit" value="Добавить пользователя">
+</form>
 <p/>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>
