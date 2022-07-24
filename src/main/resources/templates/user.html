@@ -5,39 +5,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Пользователь</title>
-    <style>
-        table th, table td {padding: 5px}
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Страница пользователя</title>
 </head>
 <body>
-<p><h1>Добро пожаловать [[${#httpServletRequest.remoteUser}]]!</h1></p>
-<p></p>
-<table style="text-align: center" th:border="1">
-    <tr>
-        <th>Id</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Фамилия</th>
-        <th>Возраст</th>
-        <th>Имя пользователя</th>
-        <th>Пароль</th>
-        <th>Роль</th>
-    </tr>
-    <tr th:each="user : ${user}">
-        <td th:utext="${user.getId()}">ID</td>
-        <td th:utext="${user.getName()}">Имя</td>
-        <td th:utext="${user.getFatherName()}">Отчество</td>
-        <td th:utext="${user.getLastName()}">Фамилия</td>
-        <td th:utext="${user.getAge()}">Возраст</td>
-        <td th:utext="${user.getUsername()}">Имя пользователя</td>
-        <td th:utext="${user.getPassword()}">Пароль</td>
-        <td th:utext="${user.getRole()}">Роль</td>
-    </tr>
-</table>
-<p/>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти"/>
-</form>
+
+<div class="container-fluid">
+    <div class="row bg-dark text-white">
+        <div class="col-lg mt-2 mb-2">
+            <div class="row mx-0">
+                <div class="col-md-auto font-weight-bold px-1" th:utext="${user.getLogin()}"></div>
+                <div class="col-md-auto px-1"> with roles: </div>
+                <div class="col-md-auto px-1" th:utext="${user.getRole()}"></div>
+            </div>
+        </div>
+        <div class="col-lg mt-2 mb-2">
+            <div class="col-md-auto text-right">
+                <a href="/logout" class="text-muted text-decoration-none">Выйти</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1 px-0">
+            <div class="nav flex-column nav-pills mt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Пользователь</a>
+            </div>
+        </div>
+        <div class="col-11 bg-light vh-100 px-5">
+            <h1 class="text-start mt-4">Информационная страница пользователя</h1>
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="card">
+                    <h5 class="card-header">О пользователе</h5>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped px-4 mb-0">
+                            <thead>
+                            <tr class="border-top">
+                                <th scope="col">ID</th>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Отчество</th>
+                                <th scope="col">Фамилия</th>
+                                <th scope="col">Возраст</th>
+                                <th scope="col">Имя пользователя</th>
+                                <th scope="col">Пароль</th>
+                                <th scope="col">Роль</th>
+                            </tr>
+                            </thead>
+                            <tr class="border-top">
+                                <td th:utext="${user.getId()}">ID</td>
+                                <td th:utext="${user.getName()}">Имя</td>
+                                <td th:utext="${user.getFatherName()}">Отчество</td>
+                                <td th:utext="${user.getLastName()}">Фамилия</td>
+                                <td th:utext="${user.getAge()}">Возраст</td>
+                                <td th:utext="${user.getUsername}">Имя пользователя</td>
+                                <td class="text-break" th:utext="${user.getPassword()}">Пароль</td>
+                                <td th:utext="${user.getRole()}">Роль</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

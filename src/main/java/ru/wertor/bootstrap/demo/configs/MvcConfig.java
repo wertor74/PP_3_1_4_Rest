@@ -1,4 +1,4 @@
-package ru.wertor.spring.boot_security.demo.configs;
+package ru.wertor.bootstrap.demo.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

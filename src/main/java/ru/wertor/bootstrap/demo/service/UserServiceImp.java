@@ -1,35 +1,32 @@
-package ru.wertor.spring.boot_security.demo.service;
+package ru.wertor.bootstrap.demo.service;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.wertor.spring.boot_security.demo.model.User;
-import ru.wertor.spring.boot_security.demo.repository.RoleRepository;
-import ru.wertor.spring.boot_security.demo.repository.UserRepository;
+import ru.wertor.bootstrap.demo.repository.UserRepository;
+import ru.wertor.bootstrap.demo.model.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImp(UserRepository userRepository) {
+    public UserServiceImp(UserRepository userRepository, @Lazy BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Transactional
     @Override
     public User findById(Long id) {
-        return userRepository.getOne(id);
+        return userRepository.getById(id);
     }
 
     @Transactional
@@ -42,21 +39,24 @@ public class UserServiceImp implements UserService {
     @Override
     public User saveUser(User user) {
         user.setRole(user.getRole());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
     @Transactional
     @Override
-    public void deleteById (Long id) {
-        userRepository.deleteById(id);
+    public User updateUser(User user) {
+        user.setRole(user.getRole());
+        if (!user.getPassword().equals(userRepository.getPasswordById(user.getId()))) {
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        return userRepository.save(user);
     }
 
     @Transactional
     @Override
-    public User findByLogin(String login) {
-        TypedQuery<User> query = entityManager.createQuery("select u from User u WHERE u.login = :login", User.class)
-                .setParameter("login", login);
-        return query.getSingleResult();
+    public void deleteUser (User user) {
+        userRepository.delete(user);
     }
 
     @Transactional

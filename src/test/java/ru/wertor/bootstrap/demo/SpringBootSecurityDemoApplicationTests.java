@@ -1,4 +1,4 @@
-package ru.wertor.spring.boot_security.demo;
+package ru.wertor.bootstrap.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

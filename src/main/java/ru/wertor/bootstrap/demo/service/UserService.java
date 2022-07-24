@@ -1,8 +1,8 @@
-package ru.wertor.spring.boot_security.demo.service;
+package ru.wertor.bootstrap.demo.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.wertor.spring.boot_security.demo.model.User;
+import ru.wertor.bootstrap.demo.model.User;
 
 import java.util.List;
 
@@ -13,9 +13,10 @@ public interface UserService extends UserDetailsService {
 
     User saveUser(User user);
 
-    void deleteById(Long id);
+    User updateUser(User user);
 
-    User findByLogin(String login);
+    void deleteUser(User user);
+
     UserDetails loadUserByUsername(String login);
 
     Long loggedUserId();
