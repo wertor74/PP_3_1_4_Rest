@@ -1,8 +1,8 @@
-package ru.wertor.bootstrap.demo.service;
+package ru.wertor.rest.demo.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.wertor.bootstrap.demo.model.User;
+import ru.wertor.rest.demo.model.User;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface UserService extends UserDetailsService {
 
     User updateUser(User user);
 
-    void deleteUser(User user);
+    void deleteUserById(Long id);
 
     UserDetails loadUserByUsername(String login);
 

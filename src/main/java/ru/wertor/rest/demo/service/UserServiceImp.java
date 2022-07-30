@@ -1,4 +1,4 @@
-package ru.wertor.bootstrap.demo.service;
+package ru.wertor.rest.demo.service;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -7,9 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.wertor.bootstrap.demo.repository.UserRepository;
-import ru.wertor.bootstrap.demo.model.User;
-
+import ru.wertor.rest.demo.repository.UserRepository;
+import ru.wertor.rest.demo.model.User;
 import java.util.List;
 
 @Service
@@ -26,7 +25,7 @@ public class UserServiceImp implements UserService {
     @Transactional
     @Override
     public User findById(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id).get();
     }
 
     @Transactional
@@ -55,8 +54,8 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public void deleteUser (User user) {
-        userRepository.delete(user);
+    public void deleteUserById (Long id) {
+        userRepository.deleteById(id);
     }
 
     @Transactional

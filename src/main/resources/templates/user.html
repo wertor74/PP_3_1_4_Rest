@@ -14,14 +14,14 @@
     <div class="row bg-dark text-white">
         <div class="col-lg mt-2 mb-2">
             <div class="row mx-0">
-                <div class="col-md-auto font-weight-bold px-1" th:utext="${user.getLogin()}"></div>
+                <div class="col-md-auto font-weight-bold px-1" id="auth-user-name"></div>
                 <div class="col-md-auto px-1"> with roles: </div>
-                <div class="col-md-auto px-1" th:utext="${user.getRole()}"></div>
+                <div class="col-md-auto px-1" id="auth-user-role"></div>
             </div>
         </div>
         <div class="col-lg mt-2 mb-2">
             <div class="col-md-auto text-right">
-                <a href="/logout" class="text-muted text-decoration-none">Выйти</a>
+                <a th:href="@{/logout}" class="text-muted text-decoration-none">Выйти</a>
             </div>
         </div>
     </div>
@@ -50,16 +50,8 @@
                                 <th scope="col">Роль</th>
                             </tr>
                             </thead>
-                            <tr class="border-top">
-                                <td th:utext="${user.getId()}">ID</td>
-                                <td th:utext="${user.getName()}">Имя</td>
-                                <td th:utext="${user.getFatherName()}">Отчество</td>
-                                <td th:utext="${user.getLastName()}">Фамилия</td>
-                                <td th:utext="${user.getAge()}">Возраст</td>
-                                <td th:utext="${user.getUsername}">Имя пользователя</td>
-                                <td class="text-break" th:utext="${user.getPassword()}">Пароль</td>
-                                <td th:utext="${user.getRole()}">Роль</td>
-                            </tr>
+                            <tbody id="auth-user-table">
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -70,5 +62,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/main.js"></script>
 </body>
 </html>

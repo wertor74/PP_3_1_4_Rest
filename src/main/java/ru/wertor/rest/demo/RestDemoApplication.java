@@ -1,13 +1,13 @@
-package ru.wertor.bootstrap.demo;
+package ru.wertor.rest.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BootStrapDemoApplication {
+public class RestDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BootStrapDemoApplication.class, args);
+		SpringApplication.run(RestDemoApplication.class, args);
 	}
 
 }

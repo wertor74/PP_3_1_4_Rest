@@ -1,5 +1,6 @@
-package ru.wertor.bootstrap.demo.model;
+package ru.wertor.rest.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Role implements GrantedAuthority {
     private String roleName;
 
     @ManyToMany(mappedBy = "role")
+    @JsonBackReference
     private Set<User> users;
 
     public Role() {

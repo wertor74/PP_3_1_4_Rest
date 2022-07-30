@@ -1,4 +1,4 @@
-package ru.wertor.bootstrap.demo.configs;
+package ru.wertor.rest.demo.configs;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

@@ -1,5 +1,7 @@
-package ru.wertor.bootstrap.demo.model;
+package ru.wertor.rest.demo.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,7 +27,9 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
     @ManyToMany
+    //@JsonManagedReference
     @JoinTable(name = "persons_role", joinColumns = @JoinColumn (name = "user_id"), inverseJoinColumns = @JoinColumn (name = "role_id"))
+    @Fetch(FetchMode.JOIN)
     private Set<Role> role;
 
     public Long getId() {

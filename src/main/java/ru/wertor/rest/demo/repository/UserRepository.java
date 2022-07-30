@@ -1,8 +1,8 @@
-package ru.wertor.bootstrap.demo.repository;
+package ru.wertor.rest.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import ru.wertor.bootstrap.demo.model.User;
+import ru.wertor.rest.demo.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
